@@ -1,0 +1,217 @@
+/* Palet Warna: Teal, Light Gray, dan warna2 cerah */
+:root {
+    --primary-color: #008080; /* Teal/Hijau Tosca */
+    --secondary-color: #38a8a8; /* Teal muda */
+    --bg-color: #e6eaea;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --complete-color: #28a745; /* Hijau */
+    --delete-color: #dc3545; /* Merah */
+}
+
+/* 1. Reset dan Base Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mulai dari atas */
+    padding: 50px 20px;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Container utama */
+.container {
+    background-color: var(--card-bg);
+    padding: 35px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+/* 2. Styling Form Input */
+#todo-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#todo-form input {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+#todo-form input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+#todo-input {
+    flex-grow: 1;
+}
+
+#date-input {
+    width: 120px;
+    color: var(--text-color);
+}
+
+#todo-form button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#todo-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+#todo-form button:active {
+    transform: scale(0.98);
+}
+
+/* 3. Styling Filter */
+.filter-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#filter-select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background-color: white;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+/* 4. Styling Daftar Tugas (List) */
+#todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-left: 6px solid var(--primary-color); /* Garis tegas */
+}
+
+.todo-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-text {
+    font-size: 1.1em;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.todo-date {
+    color: #888;
+    font-size: 0.85em;
+}
+
+/* Styling Khusus untuk Tugas Selesai */
+.todo-item[data-completed="true"] {
+    background-color: #f1fff1; /* Warna hijau super muda */
+    border-left: 6px solid var(--complete-color);
+    opacity: 0.8;
+}
+
+.todo-item[data-completed="true"] .todo-text {
+    /* EFEK CORET/STRIKE-THROUGH */
+    text-decoration: line-through; 
+    color: #999;
+}
+
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: opacity 0.3s;
+}
+
+.complete-btn {
+    background-color: var(--complete-color);
+    color: white;
+}
+
+.delete-btn {
+    background-color: var(--delete-color);
+    color: white;
+}
+
+.actions button:hover {
+    opacity: 0.8;
+}
+
+/* CSS untuk Tombol "Belum Selesai" */
+.todo-item[data-completed="true"] .complete-btn {
+    background-color: #ffc107; /* Kuning */
+    color: var(--text-color);
+}
+
+/* Responsiveness (Mobile) */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+        margin-top: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    #todo-form {
+        flex-direction: column;
+    }
+    #date-input,
+    #todo-form button {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .todo-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .todo-details {
+        width: 100%;
+    }
+}
